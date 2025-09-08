@@ -52,5 +52,5 @@ systemctl is-active docker
 
 ---
 
-👨‍💻 Author: *Your Name*  
-📅 Date: *Month Year*
+👨‍💻 Author: *Rahul C*  
+
