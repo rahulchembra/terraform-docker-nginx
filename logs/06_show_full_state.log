@@ -1,0 +1,116 @@
+# docker_container.web:
+resource "docker_container" "web" {
+    attach                                      = false
+    bridge                                      = [90mnull[0m[0m
+    command                                     = [
+        "nginx",
+        "-g",
+        "daemon off;",
+    ]
+    container_read_refresh_timeout_milliseconds = 15000
+    cpu_set                                     = [90mnull[0m[0m
+    cpu_shares                                  = 0
+    domainname                                  = [90mnull[0m[0m
+    entrypoint                                  = [
+        "/docker-entrypoint.sh",
+    ]
+    env                                         = [
+        "TZ=Asia/Kolkata",
+    ]
+    hostname                                    = "70b00e48df80"
+    id                                          = "70b00e48df80c74125ed43cf2f31271f7159f033aa3dca5c96881f0978122ed6"
+    image                                       = "sha256:4a86014ec6994761b7f3118cf47e4b4fd6bac15fc6fa262c4f356386bbc0e9d9"
+    init                                        = false
+    ipc_mode                                    = "private"
+    log_driver                                  = "json-file"
+    logs                                        = false
+    max_retry_count                             = 0
+    memory                                      = 0
+    memory_swap                                 = 0
+    must_run                                    = true
+    name                                        = "tf-nginx"
+    network_data                                = [
+        {
+            gateway                   = "172.18.0.1"
+            global_ipv6_address       = [90mnull[0m[0m
+            global_ipv6_prefix_length = 0
+            ip_address                = "172.18.0.2"
+            ip_prefix_length          = 16
+            ipv6_gateway              = [90mnull[0m[0m
+            mac_address               = "b6:49:0c:36:f7:65"
+            network_name              = "tf-demo-net"
+        },
+    ]
+    network_mode                                = "bridge"
+    pid_mode                                    = [90mnull[0m[0m
+    privileged                                  = false
+    publish_all_ports                           = false
+    read_only                                   = false
+    remove_volumes                              = true
+    restart                                     = "unless-stopped"
+    rm                                          = false
+    runtime                                     = "runc"
+    security_opts                               = []
+    shm_size                                    = 64
+    start                                       = true
+    stdin_open                                  = false
+    stop_signal                                 = "SIGQUIT"
+    stop_timeout                                = 0
+    tty                                         = false
+    user                                        = [90mnull[0m[0m
+    userns_mode                                 = [90mnull[0m[0m
+    wait                                        = false
+    wait_timeout                                = 60
+    working_dir                                 = "/"
+
+    networks_advanced {
+        aliases      = []
+        ipv4_address = [90mnull[0m[0m
+        ipv6_address = [90mnull[0m[0m
+        name         = "tf-demo-net"
+    }
+
+    ports {
+        external = 8080
+        internal = 80
+        ip       = "0.0.0.0"
+        protocol = "tcp"
+    }
+}
+
+# docker_image.nginx:
+resource "docker_image" "nginx" {
+    id           = "sha256:4a86014ec6994761b7f3118cf47e4b4fd6bac15fc6fa262c4f356386bbc0e9d9nginx:alpine"
+    image_id     = "sha256:4a86014ec6994761b7f3118cf47e4b4fd6bac15fc6fa262c4f356386bbc0e9d9"
+    keep_locally = true
+    name         = "nginx:alpine"
+    repo_digest  = "nginx@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8"
+}
+
+# docker_network.demo:
+resource "docker_network" "demo" {
+    attachable  = false
+    driver      = "bridge"
+    id          = "9cd63323040714e8737935062c92118efeea00e18720aa1d282219f0a9771f67"
+    ingress     = false
+    internal    = false
+    ipam_driver = "default"
+    ipv6        = false
+    name        = "tf-demo-net"
+    options     = {}
+    scope       = "local"
+
+    ipam_config {
+        aux_address = {}
+        gateway     = "172.18.0.1"
+        ip_range    = [90mnull[0m[0m
+        subnet      = "172.18.0.0/16"
+    }
+}
+
+
+Outputs:
+
+container_id = "70b00e48df80c74125ed43cf2f31271f7159f033aa3dca5c96881f0978122ed6"
+container_name = "tf-nginx"
+web_url = "http://localhost:8080"
