@@ -17,8 +17,9 @@ The container is exposed on [http://localhost:8080](http://localhost:8080) and e
 ---
 
 ## 🗂️ Project Structure
-
+```
 tf-docker-demo/
+├── screenshots/ 
 ├── main.tf                  # Terraform configuration
 ├── logs/                    # Execution logs
 │   ├── 01_init.log
@@ -28,8 +29,8 @@ tf-docker-demo/
 │   ├── 05_state_container.log
 │   ├── 06_show_full_state.log
 │   └── 07_destroy.log
-└── README.md
-
+└──README.md
+```
 ---
 
 ## ⚡ Prerequisites
